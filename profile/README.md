@@ -1,6 +1,6 @@
 # 🛰️ Constellation Overwatch
 
-Open Source Command & Control for the Edge 🌐
+Open Source Command, Control, Communications Data Fabric for the Edge 🌐
 
 ## 🎯 Mission
 
