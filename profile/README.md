@@ -25,7 +25,7 @@ flowchart LR
     subgraph "Constellation Fabric"
         Overwatch["Overwatch C2 (API + Workers)"]
         subgraph "Durable Storage"
-            NATS["NATS JetStream (Durable Streams)"]
+            NATS[("NATS JetStream (Durable Streams)")]
             DB[("SQLite DB (Persistent State)")]
         end
     end
