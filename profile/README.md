@@ -1,105 +1,64 @@
-# Constellation Overwatch Organization
+# Welcome 🛰️
 
-🛰️ Open-source C4ISR data fabric for edge command, control, and communications 🌐
+Constellation Overwatch is the open-source C4ISR data fabric to power your autonomous fleet management dreams. The most efficient way to build tactical awareness systems for drones, aircraft, robots, and everything in between.
 
-## 🎯 Mission
-Inspired by Anduril Lattice and ROS, we build tools for autonomous fleet management. Enable pub/sub messaging, real-time telemetry streams, video-based object detection, and tactical awareness for hybrid fleets of drones, aircraft, and robots.
+<p align="center">
+  <img src="https://constellation-overwatch.github.io/public/overwatch.svg" alt="Constellation Overwatch" width="800"/>
+</p>
 
-## Network Data Flow Diagram
-```mermaid
-flowchart LR
-    subgraph "Vehicle/Aircraft/Robot/Sensor"
-        Autopilot[["Autopilot (PX4/ArduPilot)"]]
-        Camera[("Camera (USB/RTSP)")]
-        Sensor[("Any Sensor")]
-    end
+### Constellation Overwatch Core
 
-    subgraph "Edge Machine"
-        MAVRouter["MAVLink Router + NATS Bridge (serial/UDP forwarding)"]
-        ObjDetect{"Object Detection (RT-DETR/Moondream)"}
-        FFmpeg["FFmpeg (encode/push RTSP)"]
-        MediaMTX["MediaMTX (RTSP Server)"]
-        UIs["Pilot UIs (QGC, Gimbal, Instruments)"]
-    end
+A distributed command and control system that goes anywhere. Edge, cloud, or hybrid &mdash; **the next evolution of autonomous fleet coordination.**
 
-    subgraph "Constellation Fabric"
-        Overwatch["Overwatch C2 (API + Workers)"]
-        subgraph "Durable Storage"
-            NATS[("NATS JetStream (Durable Streams)")]
-            DB[("SQLite DB (Persistent State)")]
-        end
-    end
+- **Real-time Telemetry** &mdash; Native MAVLink protocol support with NATS JetStream for durable streaming workflows.
+- **Edge Intelligence** &mdash; Modern object detection with RT-DETR and Moondream for tactical awareness.
+- **Hierarchical Mesh** &mdash; Multi-org, multi-entity pub/sub architecture without conflicts.
+- **Video Integration** &mdash; Out of the box RTSP/HTTP video streaming with MediaMTX and FFmpeg.
+- **MAVLink Compatible** &mdash; Fully backwards compatible with PX4/ArduPilot, but built for autonomous swarms.
+- **Open Contribution** &mdash; Take your seat at the table and contribute to the future of autonomous C4ISR.
 
-    subgraph "Clients/Consumers"
-        TAK["TAK/ATAK (Video Subscribers)"]
-        Control["Control Apps (Web/Mobile/CLI)"]
-    end
+Get started with Constellation Overwatch:
 
-    Autopilot <-->|MAVLink RF/UART| MAVRouter
-    MAVRouter -->|"UDP forwards (optional)"| UIs
-    UIs -->|MAV Cmds| MAVRouter
-    MAVRouter -->|JSON Telemetry| NATS
-
-    Camera -->|USB/Video| FFmpeg
-    FFmpeg -->|RTSP| MediaMTX
-    MediaMTX -->|RTSP| TAK
-    MediaMTX -->|RTSP| ObjDetect
-    Camera -.->|Direct Serial/USB| ObjDetect
-    ObjDetect -->|Detection Events| NATS
-
-    Overwatch <-->|Pub/Sub + KV| NATS
-    Overwatch <-->|Store State| DB
-    Overwatch <-->|REST API| Control
-    NATS -->|Streams/Events| Control
+```bash
+git clone https://github.com/Constellation-Overwatch/constellation-overwatch.git
+go run ./cmd/microlith/main.go
 ```
 
-## 🤖 Supported Platforms
-- ✈️ Aircraft: Fixed-wing, eVTOL, airships
-- 🚁 Drones: Class 1-3 multirotors, hexacopters, swing-wing
-- 🦾 Robots: Humanoids, quadrupeds, amphibious systems
+Get started with our edge components:
 
-Supports MAVLink protocols (PX4/ArduPilot), video streams (USB/RTSP/HTTP), and edge sensors via NATS JetStream for durable, hierarchical pub/sub.
+- [MAVLink Bridge](https://github.com/Constellation-Overwatch/mavlink2constellation) &mdash; Serial/UDP to NATS routing
+- [Object Detection](https://github.com/Constellation-Overwatch/overwatch-obj-detection) &mdash; RT-DETR and Moondream inference
+- [Web Dashboard](https://github.com/Constellation-Overwatch/constellation-overwatch) &mdash; Real-time fleet monitoring
+- [Mobile Apps](https://github.com/Constellation-Overwatch) &mdash; Tactical control interfaces
+- [CLI Tools](https://github.com/Constellation-Overwatch) &mdash; Command line fleet management
 
-## 🚀 Core Projects
-### 1. Constellation Overwatch (C2 Server)
-Central mesh fabric for fleet management:
-- REST API for org/entity registration, status updates, and queries (Bearer auth).
-- Embedded NATS JetStream for pub/sub events, telemetry, and commands.
-- SQLite DB for persistent state; durable workers process streams.
-- Hierarchical subjects: `constellation.{org_id}.{entity_id}` for telemetry/commands.
+### Constellation Cloud
 
-**Usage**:
-- Clone: `git clone https://github.com/Constellation-Overwatch/constellation-overwatch.git`
-- Run: `go run ./cmd/microlith/main.go` (starts API on :8080, NATS on :4222).
-- Create org: `curl -X POST http://localhost:8080/api/v1/organizations -H "Authorization: Bearer <token>" -d '{"name":"Fleet"}'`
-- Register entity: `curl -X POST http://localhost:8080/api/v1/entities?org_id=<org_id> -H "Authorization: Bearer <token>" -d '{"name":"Drone-001","entity_type":"aircraft_multirotor"}'`
-- Clients subscribe to NATS subjects for real-time updates.
+Deploy unlimited autonomous fleets in production environments. Edge-to-cloud synchronization.
 
-### 2. MAVLink Router + NATS Bridge
-High-performance Go bridge routes MAVLink messages (serial/UDP) to NATS JetStream:
-- Auto-fingerprints devices from HEARTBEATs; publishes parsed telemetry (GPS, attitude, battery) as JSON.
-- Supports serial (e.g., RFD900 on /dev/ttyUSB0), UDP discovery, or static ports.
-- Hierarchical publishing: `constellation.{org_id}.{entity_id}`; updates KV store for current state.
+- **Multi-Platform Support** &mdash; Aircraft, drones, robots, and amphibious systems with unified telemetry.
+- **Durable Streams** &mdash; Keep devices synchronized with NATS JetStream persistence and replay.
+- **Tactical Analytics** &mdash; Monitor performance, detect anomalies, and track mission objectives.
+- **Fleet Coordination** &mdash; Collaborative autonomous operations with hierarchical command structure.
+- **Video Intelligence** &mdash; Real-time object detection and situational awareness integration.
+- **Self-Hosted Ready** &mdash; Deploy on your infrastructure with full control and security.
 
-**Usage**:
-- Clone: `git clone https://github.com/Constellation-Overwatch/mavlink2constellation.git`
-- Configure .env: Set `NATS_URL=nats://localhost:4222`, serial/UDP inputs, org/entity IDs.
-- Run: `go run main.go`
-- Integrates with existing systems: Replaces/extends mavlink-routerd; forwards to QGC/gimbal UIs while bridging to NATS.
+Get started with Constellation deployment:
 
-### 3. Object Detection Client
-Python edge inference on video streams; publishes detections as NATS events:
-- Models: RT-DETR (fast, 80 COCO classes, 30-60 FPS) or Moondream (natural language queries, slower).
-- Inputs: Webcam, RTSP/HTTP streams, device paths.
-- Outputs: JSON events to `constellation.events.isr` with timestamps, bounding boxes, confidence.
+- [Quickstart Guide](https://constellation-overwatch.github.io/) &mdash; Deploy in minutes!
+- [API Reference](https://github.com/Constellation-Overwatch/constellation-overwatch/blob/main/docs/api.md) &mdash; Manage organizations and entities programmatically.
+- [Edge Setup](https://github.com/Constellation-Overwatch/mavlink2constellation#readme) &mdash; Connect your vehicles and sensors.
+- [Detection Pipeline](https://github.com/Constellation-Overwatch/overwatch-obj-detection#readme) &mdash; Configure computer vision workflows.
 
-**Usage**:
-- Clone: `git clone https://github.com/Constellation-Overwatch/overwatch-obj-detection.git`
-- Install: `uv sync`; configure .env with org/entity IDs, NATS URL.
-- Run RT-DETR: `uv run -m detect_rtdetr --rtsp <url>` (e.g., from MediaMTX/FFmpeg).
-- Events include device fingerprint; view annotated feed, press 'q' to exit.
+### Supported Platforms
 
-## 🛠️ Built For
-Self-hosted edge deployments: Run on edge machines for tactical awareness. Integrates MAVLink telemetry, video streams, and detections into a unified NATS fabric for real-time C2 and analytics.
+Join the autonomous revolution across multiple domains:
 
-Empowering autonomous edge fleets 🌟
+- **✈️ Aircraft** &mdash; Fixed-wing, eVTOL, airships with PX4/ArduPilot integration
+- **🚁 Drones** &mdash; Class 1-3 multirotors, hexacopters, swing-wing configurations  
+- **🦾 Robots** &mdash; Humanoids, quadrupeds, amphibious systems with sensor fusion
+- **📡 Edge Systems** &mdash; RTSP cameras, USB sensors, serial devices via unified fabric
+
+### Community
+
+Join the Constellation Overwatch community to collaborate on autonomous systems, share tactical insights, and discuss best practices on [GitHub Discussions](https://github.com/orgs/Constellation-Overwatch/discussions), [Discord](https://discord.gg/constellation), and [LinkedIn](https://linkedin.com/company/constellation-overwatch).
