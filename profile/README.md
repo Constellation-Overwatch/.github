@@ -3,7 +3,7 @@
 Constellation Overwatch is the open-source C4ISR data fabric to power your autonomous fleet management dreams. The most efficient way to build tactical awareness systems for drones, aircraft, robots, and everything in between.
 
 <p align="center">
-  <img src="https://constellation-overwatch.github.io/public/overwatch.svg" alt="Constellation Overwatch" width="800"/>
+  <img src="https://constellation-overwatch.github.io/public/overwatch.svg" alt="Constellation Overwatch" width="120"/>
 </p>
 
 ### Constellation Overwatch Core
@@ -12,7 +12,7 @@ A distributed command and control system that goes anywhere. Edge, cloud, or hyb
 
 - **Real-time Telemetry** &mdash; Native MAVLink protocol support with NATS JetStream for durable streaming workflows.
 - **Edge Intelligence** &mdash; Modern object detection with RT-DETR and Moondream for tactical awareness.
-- **Hierarchical Mesh** &mdash; Multi-org, multi-entity pub/sub architecture without conflicts.
+- **Ontological Mesh** &mdash; Multi-org, multi-entity pub/sub architecture without conflicts.
 - **Video Integration** &mdash; Out of the box RTSP/HTTP video streaming with MediaMTX and FFmpeg.
 - **MAVLink Compatible** &mdash; Fully backwards compatible with PX4/ArduPilot, but built for autonomous swarms.
 - **Open Contribution** &mdash; Take your seat at the table and contribute to the future of autonomous C4ISR.
@@ -27,7 +27,7 @@ go run ./cmd/microlith/main.go
 Get started with our edge components:
 
 - [MAVLink Bridge](https://github.com/Constellation-Overwatch/mavlink2constellation) &mdash; Serial/UDP to NATS routing
-- [Object Detection](https://github.com/Constellation-Overwatch/overwatch-obj-detection) &mdash; RT-DETR and Moondream inference
+- [Object Detection](https://github.com/Constellation-Overwatch/overwatch-obj-detection) &mdash; YOLOE, RT-DETR, SAM, and Moondream inference + object tracking integration
 - [Web Dashboard](https://github.com/Constellation-Overwatch/constellation-overwatch) &mdash; Real-time fleet monitoring
 - [Mobile Apps](https://github.com/Constellation-Overwatch) &mdash; Tactical control interfaces
 - [CLI Tools](https://github.com/Constellation-Overwatch) &mdash; Command line fleet management
