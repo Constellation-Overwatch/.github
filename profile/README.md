@@ -1,10 +1,9 @@
-# Welcome 🛰️
-
-Constellation Overwatch is the open-source C4ISR data fabric to power your autonomous fleet management dreams. The most efficient way to build tactical awareness systems for drones, aircraft, robots, and everything in between.
-
 <p align="center">
   <img src="https://constellation-overwatch.github.io/public/overwatch.svg" alt="Constellation Overwatch" width="120"/>
+  <h1 align="center">Constellation Overwatch</h1>
 </p>
+
+Constellation Overwatch is the open-source C4ISR data fabric to power your autonomous fleet management dreams. The most efficient way to build tactical awareness systems for drones, aircraft, robots, and everything in between.
 
 ### Constellation Overwatch Core
 
