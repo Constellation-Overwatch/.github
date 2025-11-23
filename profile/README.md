@@ -2,17 +2,17 @@
   <img src="https://constellation-overwatch.github.io/public/overwatch.svg" alt="Constellation Overwatch" width="120"/>
   <h1 align="center">Constellation Overwatch</h1>
 </p>
-
+<p align="center">
 Constellation Overwatch is the open-source C4ISR data fabric to power your autonomous fleet management dreams. The most efficient way to build tactical awareness systems for drones, aircraft, robots, and everything in between.
+</p>
 
-### Constellation Overwatch Core
+### Core
 
 A distributed command and control system that goes anywhere. Edge, cloud, or hybrid &mdash; **the next evolution of autonomous fleet coordination.**
 
 - **Real-time Telemetry** &mdash; Native MAVLink protocol support with NATS JetStream for durable streaming workflows.
 - **Edge Intelligence** &mdash; Modern object detection with RT-DETR and Moondream for tactical awareness.
 - **Ontological Mesh** &mdash; Multi-org, multi-entity pub/sub architecture without conflicts.
-- **Video Integration** &mdash; Out of the box RTSP/HTTP video streaming with MediaMTX and FFmpeg.
 - **MAVLink Compatible** &mdash; Fully backwards compatible with PX4/ArduPilot, but built for autonomous swarms.
 - **Open Contribution** &mdash; Take your seat at the table and contribute to the future of autonomous C4ISR.
 
